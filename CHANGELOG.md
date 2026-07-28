@@ -8,6 +8,8 @@
 
 ### Added
 
+- 첫 번째 수익형 콘텐츠인 퇴직금 계산기 MVP
+- 퇴직금 계산 공통 유틸리티와 단위·브라우저 테스트
 - pnpm Workspace 기반 개발 환경
 - Husky와 lint-staged 커밋 전 검사
 - Vitest 단위 테스트 환경

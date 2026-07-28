@@ -5,3 +5,5 @@ export function createStorageKey(
 ) {
   return `hooind.${contentType}.${contentId}.${dataName}`;
 }
+
+export * from "./retirement-pay";
