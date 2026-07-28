@@ -1,68 +1,88 @@
 # Hooind
 
-Hooind는 게임, 계산기, 테스트, 생성기 등 사용자가 브라우저에서 바로 이용할 수 있는 인터랙티브 콘텐츠를 만드는 웹 서비스 프로젝트입니다. Project PlayAds라는 내부 제작 체계를 통해 콘텐츠를 빠르고 일관되게 개발하고, Hooind Interactive 브랜드로 제공합니다.
+## 프로젝트 소개
+
+Hooind는 게임, 계산기, 테스트, 생성기처럼 브라우저에서 바로 이용할 수 있는 인터랙티브 콘텐츠를 제공하는 웹 서비스입니다. Project PlayAds라는 내부 생산 체계를 통해 콘텐츠를 빠르고 일관되게 개발하고 Hooind Interactive 브랜드로 제공합니다.
 
 ## 목표
 
-검색 유입, 반복 사용, 광고 수익을 기반으로 지속 가능한 수익형 웹 서비스를 구축하는 것이 목표입니다. 단일 콘텐츠 제작에 그치지 않고 공통 UI, 기능, 분석 및 광고 구조를 재사용할 수 있는 생산 체계를 만듭니다.
+검색 유입, 반복 사용과 광고 수익을 기반으로 지속 가능한 수익형 웹 서비스를 구축합니다. 개별 콘텐츠를 단발성으로 만드는 대신 UI, 기능, 분석, SEO와 광고 구조를 재사용할 수 있는 개발 체계를 지향합니다.
 
 ## 기술 스택
 
-- Next.js 16 (App Router)
+- Next.js 16.2.12 App Router
 - React 19
-- TypeScript
+- TypeScript 5
 - Tailwind CSS 4
-- ESLint 9
-- Prettier 3
-- npm Workspaces
+- pnpm Workspace
+- ESLint 9, Prettier 3
+- Husky, lint-staged
+- Vitest, Playwright
 - GitHub Actions
 
-## 프로젝트 구조
+## 개발 환경
+
+- Node.js 20.9 이상(Node.js 24 권장)
+- pnpm 11.17.0
+- Git
+
+Corepack을 사용하는 경우 다음 명령으로 pnpm을 준비합니다.
+
+```bash
+corepack enable
+corepack prepare pnpm@11.17.0 --activate
+```
+
+## 실행 방법
+
+```bash
+pnpm install
+pnpm dev
+```
+
+개발 서버가 시작되면 `http://localhost:3000`을 엽니다.
+
+```bash
+pnpm lint          # ESLint
+pnpm typecheck     # TypeScript
+pnpm test          # Vitest 단위 테스트
+pnpm test:e2e      # Playwright 브라우저 테스트
+pnpm format:check  # Prettier 검사
+pnpm build         # 프로덕션 빌드
+```
+
+Playwright를 처음 사용하는 환경에서는 브라우저를 설치합니다.
+
+```bash
+pnpm exec playwright install chromium
+```
+
+## 폴더 구조
 
 ```text
 .
 ├─ apps/
-│  └─ web/                 # Next.js 웹 애플리케이션
-├─ packages/               # 공통 UI 및 공유 모듈
-├─ public/                 # 프로젝트 공용 원본 정적 자산
-├─ docs/                   # 브랜드 및 개발 정책 문서
-├─ .github/
-│  └─ workflows/           # CI 워크플로우
-├─ README.md
-├─ LICENSE
-└─ .gitignore
+│  └─ web/               # Next.js 웹 애플리케이션
+├─ packages/
+│  ├─ ui/                # 공유 UI
+│  ├─ utils/             # 공유 유틸리티
+│  └─ types/             # 공유 타입
+├─ docs/                 # 브랜드 및 프로젝트 정책
+├─ public/               # 여러 앱에서 공유할 원본 정적 자산
+├─ tests/
+│  └─ e2e/               # Playwright 테스트
+└─ .github/workflows/    # PR 검증 자동화
 ```
 
-웹에서 직접 제공할 정적 자산은 `apps/web/public`에 배치합니다. 루트 `public`은 여러 앱에서 공유할 원본 자산을 관리하기 위한 공간입니다.
+웹에서 직접 제공하는 정적 자산은 `apps/web/public`에 배치합니다.
 
-## 실행 방법
+## 개발 규칙
 
-Node.js 20.9 이상과 npm이 필요합니다.
-
-```bash
-npm install
-npm run dev
-```
-
-개발 서버가 시작되면 브라우저에서 `http://localhost:3000`을 엽니다.
-
-품질 확인 명령은 다음과 같습니다.
-
-```bash
-npm run format:check
-npm run lint
-npm run build
-```
-
-## 향후 개발 예정 기능
-
-- 인터랙티브 콘텐츠 공통 레이아웃과 디자인 시스템
-- 게임·계산기·테스트·생성기용 재사용 템플릿
-- 광고 슬롯 및 레이아웃 이동 방지 구조
-- SEO 메타데이터와 구조화 데이터 자동화
-- 관련 콘텐츠 추천과 탐색 기능
-- 방문 및 콘텐츠 이용 성과 분석
-- WordPress 연동 및 배포 방식
-- 향후 AI 기반 인터랙티브 기능
-
-자세한 브랜드 방향과 개발 원칙은 `docs` 디렉터리의 문서를 참고합니다.
+- `main`에 직접 기능을 쌓지 않고 작업 브랜치와 Pull Request를 사용합니다.
+- App Router와 서버 컴포넌트를 기본으로 사용합니다.
+- 모바일 우선으로 설계하고 접근성과 성능을 함께 검토합니다.
+- 공유 가능한 코드와 타입은 `packages`로 분리합니다.
+- 커밋 전 Husky와 lint-staged 검사를 통과해야 합니다.
+- Pull Request는 Lint, Unit Test, E2E Test와 Build를 통과해야 합니다.
+- 변경사항은 `CHANGELOG.md`에 기록합니다.
+- 상세 정책은 `AGENTS.md`와 `docs`의 기준 문서를 따릅니다.
