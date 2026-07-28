@@ -7,3 +7,4 @@ export function createStorageKey(
 }
 
 export * from "./retirement-pay";
+export * from "./salary";
