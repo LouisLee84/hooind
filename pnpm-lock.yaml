@@ -29,6 +29,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@hooind/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@hooind/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -82,7 +85,15 @@ importers:
 
   packages/types: {}
 
-  packages/ui: {}
+  packages/ui:
+    dependencies:
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+    devDependencies:
+      '@types/react':
+        specifier: ^19
+        version: 19.2.17
 
   packages/utils: {}
 

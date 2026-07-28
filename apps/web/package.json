@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hooind/ui": "workspace:*",
     "@hooind/utils": "workspace:*",
     "next": "16.2.12",
     "react": "19.2.4",
