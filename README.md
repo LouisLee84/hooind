@@ -49,6 +49,26 @@ pnpm dev
 - `/calculators/salary` — 연봉 실수령액 계산기
 - `/calculators/weekly-holiday-pay` — 주휴수당 계산기
 
+운영 안내 페이지:
+
+- `/privacy` — 개인정보처리방침
+- `/terms` — 이용약관 및 면책
+- `/contact` — 문의
+
+## 운영 환경변수
+
+`.env.example`을 참고해 로컬에서는 `.env.local`, Vercel에서는 Project Settings에 값을 등록합니다. 모든 변수는 선택 사항이며 미설정 상태에서도 빌드됩니다.
+
+| 변수                                   | 설명                                                                |
+| -------------------------------------- | ------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`                 | canonical, sitemap과 robots의 대표 URL. 기본값 `https://hooind.com` |
+| `NEXT_PUBLIC_CONTACT_EMAIL`            | 문의 페이지에 공개할 이메일                                         |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID`        | 프로덕션에서만 로드하는 GA4 Measurement ID                          |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console HTML 메타 태그 인증값                                |
+| `NEXT_PUBLIC_ADSENSE_CLIENT_ID`        | 프로덕션에서만 로드하는 AdSense 클라이언트 ID                       |
+
+`NEXT_PUBLIC_` 변수는 브라우저에 공개됩니다. 비밀값을 저장하지 마세요.
+
 ```bash
 pnpm lint          # ESLint
 pnpm typecheck     # TypeScript
@@ -63,6 +83,13 @@ Playwright를 처음 사용하는 환경에서는 브라우저를 설치합니�
 ```bash
 pnpm exec playwright install chromium
 ```
+
+## 배포 및 운영
+
+- [Vercel 배포 가이드](docs/deployment.md)
+- [운영 체크리스트](docs/operation-checklist.md)
+
+Vercel에서는 Root Directory를 `apps/web`으로 설정하고 pnpm Workspace를 그대로 사용합니다. 세부 Build·Install 명령, 도메인 연결과 롤백 방법은 배포 가이드를 확인하세요.
 
 ## 폴더 구조
 

@@ -127,3 +127,97 @@ test("fits the weekly holiday calculator on a 390px viewport", async ({
     ),
   ).toBe(true);
 });
+
+test("provides operational pages through the global footer", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const footer = page.getByRole("contentinfo");
+  await expect(
+    footer.getByRole("navigation", { name: "운영 정보" }),
+  ).toBeVisible();
+
+  for (const destination of [
+    { name: "개인정보처리방침", path: "/privacy", heading: "개인정보처리방침" },
+    { name: "이용약관·면책", path: "/terms", heading: "이용약관 및 면책" },
+    { name: "문의", path: "/contact", heading: "문의" },
+  ]) {
+    await footer.getByRole("link", { name: destination.name }).click();
+    await expect(page).toHaveURL(destination.path);
+    await expect(
+      page.getByRole("heading", { level: 1, name: destination.heading }),
+    ).toBeVisible();
+    await page.goto("/");
+  }
+});
+
+test("shows a friendly 404 page for an unknown route", async ({ page }) => {
+  const response = await page.goto("/this-page-does-not-exist");
+
+  expect(response?.status()).toBe(404);
+  await expect(
+    page.getByRole("heading", { level: 1, name: "페이지를 찾을 수 없습니다" }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "홈으로" })).toBeVisible();
+  await expect(
+    page.getByRole("main").getByRole("link", { name: "계산기 목록" }),
+  ).toBeVisible();
+});
+
+test("serves sitemap and robots metadata routes", async ({ request }) => {
+  const sitemap = await request.get("/sitemap.xml");
+  expect(sitemap.ok()).toBe(true);
+  expect(sitemap.headers()["content-type"]).toContain("application/xml");
+
+  const sitemapBody = await sitemap.text();
+  for (const path of [
+    "",
+    "/calculators",
+    "/calculators/retirement-pay",
+    "/calculators/salary",
+    "/calculators/weekly-holiday-pay",
+    "/privacy",
+    "/terms",
+    "/contact",
+  ]) {
+    expect(sitemapBody).toContain(`<loc>https://hooind.com${path}</loc>`);
+  }
+
+  const robots = await request.get("/robots.txt");
+  expect(robots.ok()).toBe(true);
+  expect(await robots.text()).toContain("User-Agent: *");
+});
+
+test("uses the central site URL for canonical metadata", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://hooind.com",
+  );
+
+  await page.goto("/calculators/salary");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://hooind.com/calculators/salary",
+  );
+});
+
+test("does not load optional third-party scripts without configuration", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      consoleErrors.push(message.text());
+    }
+  });
+
+  await page.goto("/");
+  await expect(page.locator("#google-analytics-loader")).toHaveCount(0);
+  await expect(page.locator("#google-adsense-loader")).toHaveCount(0);
+  await expect(
+    page.locator('meta[name="google-site-verification"]'),
+  ).toHaveCount(0);
+  expect(consoleErrors).toEqual([]);
+});
