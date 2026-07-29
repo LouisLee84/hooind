@@ -73,12 +73,6 @@ export function CalculatorLayout({
           <AdSection label="하단 광고 영역" placement="bottom" />
         </div>
       </main>
-
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-8 text-sm text-slate-500 sm:px-8">
-          by Hooind
-        </div>
-      </footer>
     </div>
   );
 }

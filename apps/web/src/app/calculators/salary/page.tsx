@@ -1,24 +1,18 @@
 import { CalculatorLayout, type FAQItem } from "@hooind/ui";
+import { createPageMetadata, getSiteUrl } from "@/config/site";
 import type { Metadata } from "next";
 import { SalaryCalculator } from "./salary-calculator";
 
-const canonical = "https://hooind.com/calculators/salary";
+const canonical = getSiteUrl("/calculators/salary");
 const title = "연봉 실수령액 계산기 | 2026 월급 공제액 계산";
 const description =
   "연봉과 비과세 금액, 부양가족 수를 입력해 2026년 4대보험과 예상 세금, 월·연 실수령액을 간편하게 계산하세요.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title,
   description,
-  alternates: { canonical },
-  openGraph: {
-    title,
-    description,
-    locale: "ko_KR",
-    type: "website",
-    url: canonical,
-  },
-};
+  path: "/calculators/salary",
+});
 
 const faqs: FAQItem[] = [
   {

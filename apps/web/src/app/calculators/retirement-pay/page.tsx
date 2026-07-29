@@ -1,24 +1,18 @@
 import { CalculatorLayout, type FAQItem } from "@hooind/ui";
+import { createPageMetadata, getSiteUrl } from "@/config/site";
 import type { Metadata } from "next";
 import { RetirementPayCalculator } from "./retirement-pay-calculator";
 
 const title = "퇴직금 계산기 | 예상 퇴직금 간편 계산";
 const description =
   "입사일, 퇴직일, 최근 3개월 임금과 상여금·연차수당을 입력해 재직일수와 예상 퇴직금을 계산하세요.";
-const canonical = "https://hooind.com/calculators/retirement-pay";
+const canonical = getSiteUrl("/calculators/retirement-pay");
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title,
   description,
-  alternates: { canonical },
-  openGraph: {
-    title,
-    description,
-    locale: "ko_KR",
-    type: "website",
-    url: canonical,
-  },
-};
+  path: "/calculators/retirement-pay",
+});
 
 const faqs: FAQItem[] = [
   {

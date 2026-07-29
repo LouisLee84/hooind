@@ -1,6 +1,12 @@
 import { CalculatorCard } from "./calculators/calculator-card";
 import { calculatorCatalog } from "./calculators/calculator-catalog";
+import { getSiteUrl } from "@/config/site";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  alternates: { canonical: getSiteUrl("/") },
+};
 
 export default function Home() {
   return (
