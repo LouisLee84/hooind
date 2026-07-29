@@ -1,24 +1,18 @@
 import { CalculatorLayout, type FAQItem } from "@hooind/ui";
+import { createPageMetadata, getSiteUrl } from "@/config/site";
 import type { Metadata } from "next";
 import { WeeklyHolidayPayCalculator } from "./weekly-holiday-pay-calculator";
 
-const canonical = "https://hooind.com/calculators/weekly-holiday-pay";
+const canonical = getSiteUrl("/calculators/weekly-holiday-pay");
 const title = "주휴수당 계산기 | 예상 주휴수당 간편 계산";
 const description =
   "시급, 소정근로일수와 근로시간, 실제 근무일수를 입력해 주휴수당 지급 예상 여부와 주급·월 환산 참고 금액을 계산하세요.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title,
   description,
-  alternates: { canonical },
-  openGraph: {
-    title,
-    description,
-    locale: "ko_KR",
-    type: "website",
-    url: canonical,
-  },
-};
+  path: "/calculators/weekly-holiday-pay",
+});
 
 const faqs: FAQItem[] = [
   {

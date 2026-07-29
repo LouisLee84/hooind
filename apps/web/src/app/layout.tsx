@@ -1,3 +1,6 @@
+import { SiteFooter } from "@/components/site-footer";
+import { ThirdPartyScripts } from "@/components/third-party-scripts";
+import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -13,8 +16,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hooind",
-  description: "재미있고 유용한 인터랙티브 웹 콘텐츠",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.applicationName,
+  creator: siteConfig.operatorName,
+  publisher: siteConfig.operatorName,
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    ...siteConfig.openGraph,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+  },
+  twitter: {
+    card: "summary",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim()
+    ? {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim(),
+      }
+    : undefined,
 };
 
 export default function RootLayout({
@@ -27,7 +57,11 @@ export default function RootLayout({
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <SiteFooter />
+        <ThirdPartyScripts />
+      </body>
     </html>
   );
 }

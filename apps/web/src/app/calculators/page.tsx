@@ -1,14 +1,15 @@
 import { CalculatorCard } from "./calculator-card";
 import { calculatorCatalog } from "./calculator-catalog";
+import { createPageMetadata } from "@/config/site";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "계산기 목록 | Hooind Tools",
   description:
     "퇴직금, 연봉 실수령액, 주휴수당을 간편하게 계산할 수 있는 Hooind 계산기 목록입니다.",
-  alternates: { canonical: "https://hooind.com/calculators" },
-};
+  path: "/calculators",
+});
 
 export default function CalculatorsPage() {
   return (
