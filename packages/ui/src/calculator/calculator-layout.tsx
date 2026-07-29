@@ -26,12 +26,18 @@ export function CalculatorLayout({
 
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-          <a className="text-lg font-bold tracking-tight" href="/">
+          <a
+            className="rounded-md text-lg font-bold tracking-tight outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+            href="/"
+          >
             Hooind
           </a>
-          <span className="text-sm font-medium text-slate-500">
-            Hooind Tools
-          </span>
+          <a
+            className="rounded-md text-sm font-semibold text-blue-700 outline-none hover:text-blue-800 focus-visible:ring-4 focus-visible:ring-blue-200"
+            href="/calculators"
+          >
+            계산기 목록
+          </a>
         </div>
       </header>
 

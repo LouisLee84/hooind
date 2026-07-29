@@ -1,16 +1,49 @@
+import { CalculatorCard } from "./calculators/calculator-card";
+import { calculatorCatalog } from "./calculators/calculator-catalog";
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <div className="flex flex-1 items-center justify-center bg-slate-50 px-6">
-      <main className="w-full max-w-3xl rounded-3xl bg-white p-10 shadow-sm sm:p-16">
-        <p className="mb-4 font-semibold text-blue-600">Hooind Interactive</p>
-        <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-6xl">
+    <main className="min-h-screen bg-slate-50 text-slate-950">
+      <section className="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
+        <p className="font-semibold text-blue-600">Hooind Interactive</p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-6xl">
           Hooind
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-          설치 없이 바로 즐기고 사용할 수 있는 게임, 계산기, 테스트와 생성기를
-          준비하고 있습니다.
+          설치 없이 바로 사용할 수 있는 생활 계산기와 인터랙티브 도구를
+          제공합니다.
         </p>
-      </main>
-    </div>
+      </section>
+
+      <section
+        aria-labelledby="calculator-navigation-title"
+        className="mx-auto max-w-6xl px-5 pb-20 sm:px-8"
+      >
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-blue-600">Hooind Tools</p>
+            <h2
+              className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl"
+              id="calculator-navigation-title"
+            >
+              바로 쓰는 계산기
+            </h2>
+          </div>
+          <Link
+            className="shrink-0 rounded-md text-sm font-semibold text-blue-700 outline-none hover:text-blue-800 focus-visible:ring-4 focus-visible:ring-blue-200"
+            href="/calculators"
+          >
+            전체 보기
+          </Link>
+        </div>
+
+        <div className="mt-7 grid gap-5 md:grid-cols-3">
+          {calculatorCatalog.map((calculator) => (
+            <CalculatorCard key={calculator.href} {...calculator} />
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
