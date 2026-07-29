@@ -42,6 +42,13 @@ pnpm dev
 
 개발 서버가 시작되면 `http://localhost:3000`을 엽니다.
 
+## 제공 계산기
+
+- `/calculators` — 전체 계산기 목록
+- `/calculators/retirement-pay` — 퇴직금 계산기
+- `/calculators/salary` — 연봉 실수령액 계산기
+- `/calculators/weekly-holiday-pay` — 주휴수당 계산기
+
 ```bash
 pnpm lint          # ESLint
 pnpm typecheck     # TypeScript

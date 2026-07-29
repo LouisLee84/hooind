@@ -8,6 +8,7 @@ export function NumberInput({
   max,
   min = 0,
   onChange,
+  step,
   value,
 }: {
   description: string;
@@ -17,6 +18,7 @@ export function NumberInput({
   max?: number;
   min?: number;
   onChange: (value: string) => void;
+  step?: number | "any";
   value: string;
 }) {
   return (
@@ -38,6 +40,7 @@ export function NumberInput({
         name={id}
         onChange={(event) => onChange(event.target.value)}
         required
+        step={step}
         type="number"
         value={value}
       />
