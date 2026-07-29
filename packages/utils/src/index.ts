@@ -8,3 +8,4 @@ export function createStorageKey(
 
 export * from "./retirement-pay";
 export * from "./salary";
+export * from "./weekly-holiday-pay";
