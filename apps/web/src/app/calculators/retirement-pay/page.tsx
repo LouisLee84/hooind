@@ -1,6 +1,5 @@
-import { CalculatorLayout, type FAQItem } from "@hooind/ui";
-import { AdBanner } from "@/components/ads/AdBanner";
-import { ADSENSE_SLOTS } from "@/config/ads";
+import type { FAQItem } from "@hooind/ui";
+import { CalculatorLayout } from "@/components/calculator-layout";
 import { createPageMetadata, getSiteUrl } from "@/config/site";
 import type { Metadata } from "next";
 import { RetirementPayCalculator } from "./retirement-pay-calculator";
@@ -61,28 +60,10 @@ export default function RetirementPayPage() {
   return (
     <CalculatorLayout
       calculator={<RetirementPayCalculator />}
-      calculatorBottomAd={
-        <AdBanner
-          className="min-h-[100px] sm:min-h-[90px]"
-          slot={ADSENSE_SLOTS.CALCULATOR_BOTTOM}
-        />
-      }
       description={description}
       faqs={faqs}
-      resultAd={
-        <AdBanner
-          className="min-h-[250px] sm:min-h-[280px]"
-          slot={ADSENSE_SLOTS.CALCULATOR_RESULT}
-        />
-      }
       structuredData={structuredData}
       title="퇴직금 계산기"
-      topAd={
-        <AdBanner
-          className="min-h-[100px] sm:min-h-[90px]"
-          slot={ADSENSE_SLOTS.CALCULATOR_TOP}
-        />
-      }
     >
       <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-20">

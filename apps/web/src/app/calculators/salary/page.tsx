@@ -1,4 +1,5 @@
-import { CalculatorLayout, type FAQItem } from "@hooind/ui";
+import type { FAQItem } from "@hooind/ui";
+import { CalculatorLayout } from "@/components/calculator-layout";
 import { createPageMetadata, getSiteUrl } from "@/config/site";
 import type { Metadata } from "next";
 import { SalaryCalculator } from "./salary-calculator";

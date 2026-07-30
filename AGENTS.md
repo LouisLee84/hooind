@@ -26,6 +26,20 @@
 - 포맷은 Prettier에 맡기며 수동 스타일 예외를 만들지 않는다.
 - 공개 API와 복잡한 로직에는 의도를 설명하는 짧은 문서를 남긴다.
 
+## 공용 AdSense 정책
+
+- 새 계산기·도구 앱은 `@/components/calculator-layout`의 `CalculatorLayout`을 사용하고 `adLayout`을 명시적으로 검토한다.
+- `adLayout` 타입은 `"full" | "compact" | "tool" | "none"`이며 기본값은 `full`이다.
+  - `full`: 제목·소개 아래 Top, 계산기·결과 아래 Result, 설명 다음이자 FAQ·관련 콘텐츠 위 Bottom
+  - `compact`: Top + Result. 콘텐츠가 짧아 세 광고 사이의 간격이 부족할 때 사용한다.
+  - `tool`: Top + Bottom. 결과 영역이 없는 생성기·도구에 사용한다.
+  - `none`: 광고가 부적절한 페이지에 사용한다.
+- Slot ID를 페이지에 직접 작성하지 않고 `ADSENSE_SLOTS`와 공용 `AdBanner`를 재사용한다.
+- Top과 Bottom은 `min-height`를 모바일 100px·데스크톱 90px, Result는 모바일 250px·데스크톱 280px로 예약한다. 실제 광고 크기를 고정하지 않는다.
+- 광고를 입력·결과 확인 버튼에 인접 배치하지 않고 광고 사이에 충분한 콘텐츠를 둔다. 조건을 충족하지 못하면 광고 수를 줄인다.
+- Production에서만 실제 광고를 로드하고 Development placeholder, 반응형 속성, StrictMode 중복 요청 방지와 단일 전역 로더를 유지한다.
+- 새 계산기 완료 보고에는 적용한 `adLayout`, 광고 개수와 위치, 모바일·데스크톱 확인, ESLint·TypeScript·테스트·Production build 결과를 포함한다.
+
 ## Git 규칙
 
 - 작은 목적 단위로 커밋한다.

@@ -34,6 +34,8 @@
 
 ### Changed
 
+- 연봉 실수령액·주휴수당 계산기에 기본 `full` 공용 AdSense 레이아웃 정책 적용
+- 신규 계산기·도구에 `full`, `compact`, `tool`, `none` 공용 AdSense 레이아웃 정책을 기본 적용
 - 퇴직금 계산기에 실제 AdSense Slot ID를 연결하고 제목·결과·FAQ 전 광고 높이를 반응형으로 예약
 - 계산기 canonical, OpenGraph와 JSON-LD URL을 중앙 사이트 설정으로 통합
 - 계산기 상세 페이지 헤더에 전체 계산기 목록 탐색 링크 추가

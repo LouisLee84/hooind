@@ -2,6 +2,19 @@ import type { ReactNode } from "react";
 import { FAQSection, type FAQItem } from "./faq-section";
 import { StructuredData } from "./structured-data";
 
+export type CalculatorLayoutProps = {
+  calculator: ReactNode;
+  calculatorBottomAd?: ReactNode;
+  children: ReactNode;
+  description: string;
+  eyebrow?: string;
+  faqs: FAQItem[];
+  resultAd?: ReactNode;
+  structuredData: unknown;
+  title: string;
+  topAd?: ReactNode;
+};
+
 export function CalculatorLayout({
   calculator,
   calculatorBottomAd,
@@ -13,18 +26,7 @@ export function CalculatorLayout({
   structuredData,
   title,
   topAd,
-}: {
-  calculator: ReactNode;
-  calculatorBottomAd?: ReactNode;
-  children: ReactNode;
-  description: string;
-  eyebrow?: string;
-  faqs: FAQItem[];
-  resultAd?: ReactNode;
-  structuredData: unknown;
-  title: string;
-  topAd?: ReactNode;
-}) {
+}: CalculatorLayoutProps) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
       <StructuredData data={structuredData} />
