@@ -1,24 +1,29 @@
 import type { ReactNode } from "react";
-import { AdSection } from "./ad-section";
 import { FAQSection, type FAQItem } from "./faq-section";
 import { StructuredData } from "./structured-data";
 
 export function CalculatorLayout({
   calculator,
+  calculatorBottomAd,
   children,
   description,
   eyebrow = "무료 간편 계산기",
   faqs,
+  resultAd,
   structuredData,
   title,
+  topAd,
 }: {
   calculator: ReactNode;
+  calculatorBottomAd?: ReactNode;
   children: ReactNode;
   description: string;
   eyebrow?: string;
   faqs: FAQItem[];
+  resultAd?: ReactNode;
   structuredData: unknown;
   title: string;
+  topAd?: ReactNode;
 }) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
@@ -54,24 +59,24 @@ export function CalculatorLayout({
           </div>
         </section>
 
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <AdSection label="상단 광고 영역" placement="top" />
-        </div>
+        {topAd && <div className="mx-auto max-w-6xl px-5 sm:px-8">{topAd}</div>}
 
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] lg:items-start">
-          {calculator}
-          <div className="lg:sticky lg:top-5">
-            <AdSection label="본문 광고 영역" placement="content" />
+        <div className="mx-auto max-w-3xl px-5 py-10 sm:px-8 sm:py-12">
+          <div className="space-y-8 sm:space-y-10">
+            {calculator}
+            {resultAd}
           </div>
         </div>
 
         {children}
 
-        <FAQSection items={faqs} />
+        {calculatorBottomAd && (
+          <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
+            {calculatorBottomAd}
+          </div>
+        )}
 
-        <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
-          <AdSection label="하단 광고 영역" placement="bottom" />
-        </div>
+        <FAQSection items={faqs} />
       </main>
     </div>
   );

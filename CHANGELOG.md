@@ -8,6 +8,7 @@
 
 ### Added
 
+- 계산기 페이지에서 재사용할 수 있는 Production 전용 반응형 AdSense 배너 컴포넌트
 - 중앙 사이트 설정과 환경변수 기반 운영 URL·문의 정보 관리
 - 루트 메타데이터, sitemap, robots와 Search Console 인증 기반
 - 개인정보처리방침, 이용약관·면책, 문의 페이지
@@ -33,6 +34,7 @@
 
 ### Changed
 
+- 퇴직금 계산기에 실제 AdSense Slot ID를 연결하고 제목·결과·FAQ 전 광고 높이를 반응형으로 예약
 - 계산기 canonical, OpenGraph와 JSON-LD URL을 중앙 사이트 설정으로 통합
 - 계산기 상세 페이지 헤더에 전체 계산기 목록 탐색 링크 추가
 - 퇴직금 계산기를 공통 입력, 결과, 레이아웃, FAQ 컴포넌트로 리팩터링
