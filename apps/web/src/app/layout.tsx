@@ -40,11 +40,16 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
   },
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim()
-    ? {
-        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim(),
-      }
-    : undefined,
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim()
+      ? {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim(),
+        }
+      : {}),
+    other: {
+      "naver-site-verification": "34e3e70bc9e6bac141b35d87000561dec4852f98",
+    },
+  },
 };
 
 export default function RootLayout({

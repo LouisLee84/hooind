@@ -8,6 +8,7 @@
 
 ### Added
 
+- 네이버 서치어드바이저 사이트 소유권 확인 메타 태그
 - 계산기 페이지에서 재사용할 수 있는 Production 전용 반응형 AdSense 배너 컴포넌트
 - 중앙 사이트 설정과 환경변수 기반 운영 URL·문의 정보 관리
 - 루트 메타데이터, sitemap, robots와 Search Console 인증 기반
